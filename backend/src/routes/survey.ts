@@ -90,7 +90,7 @@ router.delete(
   },
 );
 
-router.use((err: any, req: Request, res: Response, next: NextFunction) => {
+router.use((err: any, req: Request, res: Response) => {
   console.error(err);
   res.status(500).json({
     message: "Oops!! Something went wrong",
