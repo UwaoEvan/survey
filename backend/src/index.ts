@@ -1,10 +1,15 @@
-import express, { Request, Response } from "express";
+import express from "express";
+import mongoose from "mongoose";
+import routes from "../src/routes/survey";
+
+mongoose.connect("");
 
 const app = express();
 
-app.get("/", (req: Request, res: Response) => {
-  res.send("Hello world")
-})
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use("/api", routes);
 
 const PORT = 4000;
 
