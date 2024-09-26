@@ -1,8 +1,9 @@
 import { Schema, model } from "mongoose";
 
 const surveySchema = new Schema({
-  id: String,
   title: String,
+  createdAt: Date,
+  updatedAt: Date,
 });
 
 export const Survey = model("Survey", surveySchema);
