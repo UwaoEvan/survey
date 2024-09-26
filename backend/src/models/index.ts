@@ -1,7 +1,7 @@
 import { Schema, model } from "mongoose";
 
 const surveySchema = new Schema({
-  id: Number,
+  id: String,
   title: String,
 });
 
