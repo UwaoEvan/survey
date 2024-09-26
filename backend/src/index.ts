@@ -1,4 +1,4 @@
-import express, { NextFunction, Request } from "express";
+import express from "express";
 import mongoose from "mongoose";
 import routes from "../src/routes/survey";
 
