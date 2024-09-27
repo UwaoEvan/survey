@@ -3,6 +3,8 @@ import { FormField } from "@/types/form";
 import Checkbox from "./input-types/checkbox";
 import DropDown from "./input-types/dropdown";
 import RadioButton from "./input-types/radio-button";
+import { useMutation, QueryClient } from "@tanstack/react-query";
+import { useRouter } from "next/navigation";
 
 type FormPreviewProps = {
   formFields: FormField[];
@@ -10,6 +12,42 @@ type FormPreviewProps = {
 
 export default function FormPreview(props: FormPreviewProps) {
   const { formFields } = props;
+  const router = useRouter();
+  const queryClient = new QueryClient();
+
+  const submitData = async () => {
+    try {
+      const request = {
+        title: "New Survey",
+        survey: formFields,
+      };
+      const response = await fetch("http://localhost:4000/api/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(request),
+      });
+
+      if (!response.ok) {
+        throw response;
+      }
+
+      return await response.json();
+    } catch (error) {
+      throw error;
+    }
+  };
+
+  const mutation = useMutation({
+    mutationFn: submitData,
+    onError: (err) => console.log(err),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["surveys"] }),
+        router.push("/");
+    },
+  });
+
   const renderField = (field: FormField) => {
     switch (field.type) {
       case "radio":
@@ -34,10 +72,12 @@ export default function FormPreview(props: FormPreviewProps) {
         {formFields.map((field: FormField) => renderField(field))}
         <div className="mt-6">
           <button
+            disabled={mutation.isPending}
+            onClick={() => mutation.mutate()}
             type="button"
             className="w-80 rounded-md bg-indigo-500 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus:outline focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500"
           >
-            Submit
+            {mutation.isPending ? "Please wait" : "Publish survey"}
           </button>
         </div>
       </div>

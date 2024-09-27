@@ -4,7 +4,7 @@ import SideBar from "@/components/sidebar";
 
 export default function Page() {
   return (
-    <div className="flex w-full flex-col">
+    <div className="relative flex w-full">
       <SideBar />
       <FormBuilder />
     </div>

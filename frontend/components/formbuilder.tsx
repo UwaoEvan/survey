@@ -31,7 +31,7 @@ export default function FormBuilder() {
   };
 
   return (
-    <div>
+    <div className="w-full">
       {showPreview ? (
         <FormPreview formFields={formFields} />
       ) : (
