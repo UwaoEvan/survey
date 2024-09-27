@@ -12,21 +12,23 @@ import DropDown from "./input-types/dropdown";
 import RadioButton from "./input-types/radio-button";
 
 export default function FormBuilder() {
-  const { showPreview, formFields } = useSelector((state: RootState) => state.form);
+  const { showPreview, formFields } = useSelector(
+    (state: RootState) => state.form,
+  );
   const dispatch = useDispatch();
 
   const handleRemoveField = (id: Number) => {
-    dispatch({ type: REMOVE_FIELD, payload: id })
-  }
+    dispatch({ type: REMOVE_FIELD, payload: id });
+  };
 
   const handleChange = (id: Number, name: String, value: string) => {
     const payload = {
       id,
       name,
-      value
-    }
-    dispatch({ type: UPDATE_FIELD, payload })
-  }
+      value,
+    };
+    dispatch({ type: UPDATE_FIELD, payload });
+  };
 
   return (
     <div>
@@ -69,7 +71,9 @@ export default function FormBuilder() {
                       "my-2 w-full cursor-text rounded border border-gray-300 p-2",
                     )}
                     value={field.question}
-                    onChange={(e) => handleChange(field.id, e.target.name, e.target.value)}
+                    onChange={(e) =>
+                      handleChange(field.id, e.target.name, e.target.value)
+                    }
                   />
                   {renderField(field)}
                 </div>
@@ -85,7 +89,9 @@ export default function FormBuilder() {
 const renderField = (field: FormField) => {
   switch (field.type) {
     case "radio":
-      return <RadioButton key={field.id} label={field.question} field={field} />;
+      return (
+        <RadioButton key={field.id} label={field.question} field={field} />
+      );
     case "checkbox":
       return <Checkbox key={field.id} label={field.question} field={field} />;
     case "dropdown":

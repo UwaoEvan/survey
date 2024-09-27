@@ -5,7 +5,7 @@ import {
   TOGGLE_PREVIEW,
   UPDATE_ANSWER_OPTION,
   UPDATE_TEXT_RESPONSE,
-} from './actions';
+} from "./actions";
 
 const initialState = {
   formFields: [
@@ -31,7 +31,9 @@ const formReducer = (state = initialState, action: any) => {
     case REMOVE_FIELD:
       return {
         ...state,
-        formFields: state.formFields.filter((field) => field.id !== action.payload),
+        formFields: state.formFields.filter(
+          (field) => field.id !== action.payload,
+        ),
       };
 
     case UPDATE_FIELD:

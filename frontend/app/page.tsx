@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import FormBuilder from "../components/formbuilder";
 export default function Home() {
   return (

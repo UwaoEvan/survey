@@ -9,7 +9,7 @@ import { useSelector, useDispatch } from "react-redux";
 type CheckboxProps = {
   field: FormField;
   label: string;
-}
+};
 
 export default function Checkbox(props: CheckboxProps) {
   const { field, label } = props;
@@ -36,8 +36,8 @@ export default function Checkbox(props: CheckboxProps) {
 
     const payload = {
       id: field.id,
-      options: [...options, newOption]
-    }
+      options: [...options, newOption],
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
     setOptions([...options, newOption]);
@@ -48,8 +48,8 @@ export default function Checkbox(props: CheckboxProps) {
 
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
     setOptions(newOptions);
@@ -63,8 +63,8 @@ export default function Checkbox(props: CheckboxProps) {
 
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
     setOptions(newOptions);
@@ -163,7 +163,7 @@ const OptionRenderer = (options: OptionsAnswerType[]) => {
             id={option.value}
             name={option.value}
             value={option.value}
-            onChange={e => handleCheckboxChange(e.target.value)}
+            onChange={(e) => handleCheckboxChange(e.target.value)}
             className="h-4 w-4 border-gray-300 text-indigo-600 focus:ring-indigo-600"
           />
           <label

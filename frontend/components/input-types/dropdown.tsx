@@ -9,14 +9,14 @@ import { useSelector, useDispatch } from "react-redux";
 type DropdownProps = {
   field: FormField;
   label: string;
-}
+};
 
 export default function DropDown(props: DropdownProps) {
   const { field, label } = props;
   const [selectedOption, setSelectedOption] = useState("");
   const { showPreview } = useSelector((state: RootState) => state.form);
   const dispatch = useDispatch();
- 
+
   const [options, setOptions] = useState(
     field?.providedAnswersOptions || [
       {
@@ -35,8 +35,8 @@ export default function DropDown(props: DropdownProps) {
     };
     const payload = {
       id: field.id,
-      options: [...options, newOption]
-    }
+      options: [...options, newOption],
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
     setOptions([...options, newOption]);
@@ -48,8 +48,8 @@ export default function DropDown(props: DropdownProps) {
 
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
   };
@@ -63,22 +63,21 @@ export default function DropDown(props: DropdownProps) {
 
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
   };
 
   return (
     <div>
-      {
-        showPreview ?
+      {showPreview ? (
         <label className="text-2xl font-semibold text-gray-900">{`${field.id}: ${label}`}</label>
-        :
+      ) : (
         <label className="text-base font-semibold text-gray-900">
-        Enter dropdown options
-      </label>
-      }
+          Enter dropdown options
+        </label>
+      )}
 
       <fieldset className="mt-2">
         <legend className="sr-only">{label}</legend>
@@ -142,7 +141,7 @@ const OptionRenderer = (options: OptionsAnswerType[]) => {
       value={selectedOption}
       onChange={(e) => setSelectedOption(e.target.value)}
       className="max-w-80 cursor-text rounded border border-gray-300 p-2 mb-2"
-    >   
+    >
       {options.map((option) => (
         <option key={option.id} value={option.value}>
           {option.value}

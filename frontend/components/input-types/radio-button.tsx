@@ -9,7 +9,7 @@ import { UPDATE_ANSWER_OPTION } from "@/store/actions";
 type RadioButtonProps = {
   label: string;
   field: FormField;
-}
+};
 
 export default function RadioButton(props: RadioButtonProps) {
   const { label, field } = props;
@@ -35,8 +35,8 @@ export default function RadioButton(props: RadioButtonProps) {
     };
     const payload = {
       id: field.id,
-      options: [...options, newOption]
-    }
+      options: [...options, newOption],
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
     setOptions([...options, newOption]);
@@ -48,8 +48,8 @@ export default function RadioButton(props: RadioButtonProps) {
 
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
   };
@@ -62,8 +62,8 @@ export default function RadioButton(props: RadioButtonProps) {
     setOptions(newOptions);
     const payload = {
       id: field.id,
-      options: newOptions
-    }
+      options: newOptions,
+    };
 
     dispatch({ type: UPDATE_ANSWER_OPTION, payload });
   };

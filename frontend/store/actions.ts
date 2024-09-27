@@ -25,7 +25,10 @@ export const togglePreview = () => ({
   type: TOGGLE_PREVIEW,
 });
 
-export const updateAnswerOption = (id: number, options: OptionsAnswerType[]) => ({
+export const updateAnswerOption = (
+  id: number,
+  options: OptionsAnswerType[],
+) => ({
   type: UPDATE_ANSWER_OPTION,
   payload: { id, options },
 });
