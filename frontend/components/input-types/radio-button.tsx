@@ -9,12 +9,16 @@ import { UPDATE_ANSWER_OPTION } from "@/store/actions";
 type RadioButtonProps = {
   label: string;
   field: FormField;
+  error?: string;
 };
 
 export default function RadioButton(props: RadioButtonProps) {
-  const { label, field } = props;
+  const { label, field, error } = props;
   const [selectedOption, setSelectedOption] = useState<string>("");
-  const { showPreview } = useSelector((state: RootState) => state.form);
+  const [answer, setAnswer] = useState<string>("");
+  const { showPreview, correctAnswer } = useSelector(
+    (state: RootState) => state.form,
+  );
   const dispatch = useDispatch();
 
   const [options, setOptions] = useState(
@@ -32,6 +36,7 @@ export default function RadioButton(props: RadioButtonProps) {
       id: options.length + 1,
       optionLabel: `Option ${options.length + 1}`,
       value: `Option ${options.length + 1}`,
+      correctAnswer: answer,
     };
     const payload = {
       id: field.id,
@@ -108,9 +113,19 @@ export default function RadioButton(props: RadioButtonProps) {
               </div>
             ))}
             {addNewRadioOptions(handleAddOption)}
+            <p>Write the correct answer.</p>
+            <input
+              type="text"
+              value={answer}
+              onChange={(e) => setAnswer(e.target.value)}
+              className="mx-3 my-2 w-full cursor-text rounded border border-gray-300 p-2"
+            />
           </div>
         ) : (
-          OptionRenderer(options)
+          <>
+            {OptionRenderer(options)}
+            {error && <p className="text-red-600">{error}</p>}
+          </>
         )}
       </fieldset>
     </div>

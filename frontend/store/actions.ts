@@ -6,6 +6,7 @@ export const UPDATE_FIELD = "UPDATE_FIELD";
 export const TOGGLE_PREVIEW = "TOGGLE_PREVIEW";
 export const UPDATE_ANSWER_OPTION = "UPDATE_ANSWER_OPTION";
 export const UPDATE_TEXT_RESPONSE = "UPDATE_TEXT_RESPONSE";
+export const CHECK_CORRECT_ANSWER = "CHECK_CORRECT_ANSWER";
 
 export const addField = () => ({
   type: ADD_FIELD,
@@ -35,5 +36,9 @@ export const updateAnswerOption = (
 
 export const updateTextResponse = (id: number, text: string) => ({
   type: UPDATE_TEXT_RESPONSE,
+  payload: { id, text },
+});
+export const checkCorrectAnswer = (id: number, text: string) => ({
+  type: CHECK_CORRECT_ANSWER,
   payload: { id, text },
 });

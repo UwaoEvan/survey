@@ -4,43 +4,11 @@ export type FormField = {
   type: string;
   providedAnswersOptions?: OptionsAnswerType[];
   textAnswer?: string;
-  categoryAnswer?: string; //todo: to be updated
+  correctAnswer?: string;
 };
 
 export type OptionsAnswerType = {
   id: number;
   optionLabel: string;
   value: string;
-};
-
-export type CommentType = {
-  id: number;
-  user: {
-    id: number;
-    name: string;
-    avatar: string;
-    createdAt: string;
-  };
-  comment: string;
-  responses: {
-    id: number;
-    user: {
-      id: number;
-      name: string;
-      avatar: string;
-      createdAt: string;
-    };
-    comment: string;
-  }[];
-};
-
-export type SingleCommentType = {
-  id: number;
-  user: {
-    id: number;
-    name: string;
-    avatar: string;
-    createdAt: string;
-  };
-  comment: string;
 };

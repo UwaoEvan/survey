@@ -5,6 +5,7 @@ import {
   TOGGLE_PREVIEW,
   UPDATE_ANSWER_OPTION,
   UPDATE_TEXT_RESPONSE,
+  CHECK_CORRECT_ANSWER,
 } from "./actions";
 
 const initialState = {
@@ -15,9 +16,11 @@ const initialState = {
       type: "radio",
       providedAnswersOptions: [],
       textAnswer: "",
+      correctAnswer: "",
     },
   ],
   showPreview: false,
+  correctAnswer: "",
 };
 
 const formReducer = (state = initialState, action: any) => {
@@ -42,6 +45,17 @@ const formReducer = (state = initialState, action: any) => {
         formFields: state.formFields.map((field) =>
           field.id === action.payload.id
             ? { ...field, [action.payload.name]: action.payload.value }
+            : field,
+        ),
+      };
+
+    case CHECK_CORRECT_ANSWER:
+      return {
+        ...state,
+        correctAnswer: action.payload.text,
+        formFields: state.formFields.map((field) =>
+          field.id === action.payload.id
+            ? { ...field, correctAnswer: action.payload.text }
             : field,
         ),
       };

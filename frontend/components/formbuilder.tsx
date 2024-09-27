@@ -65,7 +65,7 @@ export default function FormBuilder() {
                 <div className="h-full max-w-[900px] flex-1 rounded-lg border border-x bg-white p-4">
                   <textarea
                     name="question"
-                    placeholder="Question"
+                    placeholder="Enter the title of the question you would like to ask the user"
                     className={clsx(
                       !showPreview && "bg-[#F1F3F4]",
                       "my-2 w-full cursor-text rounded border border-gray-300 p-2",
