@@ -38,7 +38,7 @@ export default function Home() {
         </p>
       ))}
 
-      {data.length < 1 && (
+      {!data && (
         <div>
           <p className="text-ms text-center">No surveys found</p>
           <div className="w-full justify-center flex mt-3">

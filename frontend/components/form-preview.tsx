@@ -18,7 +18,7 @@ export default function FormPreview(props: FormPreviewProps) {
   const submitData = async () => {
     try {
       const request = {
-        title: "New Survey",
+        title: "New survey",
         survey: formFields,
       };
       const response = await fetch("http://localhost:4000/api/", {
@@ -66,9 +66,6 @@ export default function FormPreview(props: FormPreviewProps) {
   return (
     <div className="relative flex flex-col items-center h-[88vh] w-full md:mt-10">
       <div className="mt-6 flex flex-col w-fit md:pr-80">
-        <h1 className="text-2xl font-semibold text-gray-900 mb-2">
-          Title goes here...
-        </h1>
         {formFields.map((field: FormField) => renderField(field))}
         <div className="mt-6">
           <button
