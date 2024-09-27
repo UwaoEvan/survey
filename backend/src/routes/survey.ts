@@ -16,14 +16,15 @@ router.get("/", async (_, res: Response) => {
 router.post(
   "/",
   async (request: Request, res: Response, next: NextFunction) => {
-    const { title } = request.body;
+    const { title, survey } = request.body;
+
     try {
-      const survey = await Survey.create({
+      const newSurvey = await Survey.create({
         title,
-        createdAt: new Date(),
+        survey,
       });
 
-      res.send(survey);
+      res.send(newSurvey);
     } catch (error) {
       next(error);
     }
@@ -47,12 +48,9 @@ router.put(
   async (request: Request, response: Response, next: NextFunction) => {
     const { id } = request.params;
     const body = request.body;
-    const newBody = {
-      ...body,
-      updatedAt: new Date(),
-    };
+
     try {
-      const record = await Survey.findByIdAndUpdate(id, newBody, {
+      const record = await Survey.findByIdAndUpdate(id, body, {
         new: true,
         runValidators: true,
       });

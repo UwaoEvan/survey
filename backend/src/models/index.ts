@@ -1,14 +1,35 @@
 import { Schema, model } from "mongoose";
 
-const surveySchema = new Schema({
-  title: String,
-  createdAt: Date,
-  updatedAt: Date,
+const questionSchema = new Schema({
+  id: {
+    type: Number,
+    required: true,
+  },
+  question: {
+    type: String,
+    required: true,
+  },
+  type: {
+    type: String,
+    enum: ["radio", "checkbox", "dropdown"],
+    required: true,
+  },
 });
-/***
- * 
- * For multiple choice 
- * each choice to have an id on post 
- * fields - id, qeuestionText, questionOptions ["a","b","V"] can hold an array of many, correctAmswer, questionType 
- */
+
+const surveySchema = new Schema(
+  {
+    title: {
+      type: String,
+      required: true,
+    },
+    survey: {
+      type: [questionSchema],
+      required: true,
+    },
+  },
+  {
+    timestamps: true,
+  },
+);
+
 export const Survey = model("Survey", surveySchema);
