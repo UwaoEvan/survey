@@ -2,7 +2,6 @@
 import { Provider } from "react-redux";
 import store from "@/store/store";
 import PageHeader from "@/components/header";
-import SideBar from "@/components/sidebar";
 import "./globals.css";
 
 export default function RootLayout({
@@ -17,10 +16,7 @@ export default function RootLayout({
           <PageHeader />
           <div className="md:pt-10">
             <main className="overflow-x-hidden">
-              <div className="px-4 sm:px-6 md:px-8">
-                <SideBar />
-                {children}
-              </div>
+              <div className="px-4 sm:px-6 md:px-8">{children}</div>
             </main>
           </div>
         </body>
