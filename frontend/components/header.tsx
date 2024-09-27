@@ -13,7 +13,7 @@ export default function PageHeader() {
   return (
     <div className="sticky top-0 z-50 w-full border-b bg-white px-4 pb-2 pt-6 sm:px-6 md:fixed md:z-50 md:flex md:items-center  md:justify-between md:pl-8">
       <h2 className="text-2xl font-bold leading-7 sm:truncate sm:text-3xl sm:tracking-tight">
-        Surveys
+        {showPreview ? "Survey preview" : "Create a survey" }
       </h2>
       <div className="mt-4 flex md:mt-0">
         <button
