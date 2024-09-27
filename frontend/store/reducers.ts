@@ -8,7 +8,7 @@ import {
 } from './actions';
 
 const initialState = {
-  fields: [
+  formFields: [
     {
       id: 1,
       question: "",
@@ -25,28 +25,19 @@ const formReducer = (state = initialState, action: any) => {
     case ADD_FIELD:
       return {
         ...state,
-        fields: [
-          ...state.fields,
-          {
-            id: state.fields.length + 1,
-            question: "",
-            type: "radio", 
-            providedAnswersOptions: [],
-            textAnswer: "",
-          },
-        ],
+        formFields: [...state.formFields, action.payload],
       };
 
     case REMOVE_FIELD:
       return {
         ...state,
-        fields: state.fields.filter((field) => field.id !== action.payload),
+        formFields: state.formFields.filter((field) => field.id !== action.payload),
       };
 
     case UPDATE_FIELD:
       return {
         ...state,
-        fields: state.fields.map((field) =>
+        formFields: state.formFields.map((field) =>
           field.id === action.payload.id
             ? { ...field, [action.payload.name]: action.payload.value }
             : field,
@@ -62,7 +53,7 @@ const formReducer = (state = initialState, action: any) => {
     case UPDATE_ANSWER_OPTION:
       return {
         ...state,
-        fields: state.fields.map((field) =>
+        formFields: state.formFields.map((field) =>
           field.id === action.payload.id
             ? { ...field, providedAnswersOptions: action.payload.options }
             : field,
@@ -72,7 +63,7 @@ const formReducer = (state = initialState, action: any) => {
     case UPDATE_TEXT_RESPONSE:
       return {
         ...state,
-        fields: state.fields.map((field) =>
+        formFields: state.formFields.map((field) =>
           field.id === action.payload.id
             ? { ...field, textAnswer: action.payload.text }
             : field,
