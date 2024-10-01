@@ -5,7 +5,7 @@ Link to the video demo:- https://drive.google.com/file/d/1r1ChHD_yQp-VKkIKFODD3M
 
 ## Tech Stack
 
-1. **Next.js** - This is a full-fledged framework for reactjs. With batteries-included in terms of built-in features such as routing, data-fetching and image optimization. This came in handy as this application had dynamic routes for the chat history sections to render to the ui. The in-built backend api allowed for seemless intergration of the backend service with the UI.
+1. **Next.js** - This is a full-fledged framework for reactjs. With batteries-included in terms of built-in features such as routing, data-fetching and image optimization. The in-built backend api allowed for seemless intergration of the backend service with the UI.
 2. **Tailwind CSS** - This is a utility-first css framework i used to style my markup. The choice was informed by a ton of advantages that are included. There's no need of creating separate files for styling-this saved me time! Tailwind also takes the mobile-first approach, and throwing afew utility classes handles components' responsiveness.
 3. **Typescript** - Offered type safety by preventing errors at runtime caused by unexpected types.
 4. **Redux** - This is a library that allowed me to manage the app-wide state of the application in a centralized way. It allowed me to pass data through the component tree without having to pass props down manually at every level.
