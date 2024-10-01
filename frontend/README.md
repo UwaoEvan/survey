@@ -12,7 +12,7 @@ Link to the video demo:- https://drive.google.com/file/d/1r1ChHD_yQp-VKkIKFODD3M
 
 ## Implementation Decisions
 
-- **Routing**: I moved to use the NextJS folder structure for routing since it is a very convenient and powerful tool. With the provision of next/navigaition's routing, I was able to send each chat details via the params and decoded the params allowing for fetching of the data in the individual chat's page.
+- **Routing**: I moved to use the NextJS folder structure for routing since it is a very convenient and powerful tool. With the provision of next/navigaition's routing.
 
 ### Project Structure
 
