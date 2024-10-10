@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from "express";
 import { Survey } from "../models";
+import { createSurvey, deleteSurvey } from "../controller/survey";
 
 const router = Router();
 
@@ -17,17 +18,9 @@ router.post(
   "/",
   async (request: Request, res: Response, next: NextFunction) => {
     const { title, survey } = request.body;
-
-    try {
-      const newSurvey = await Survey.create({
-        title,
-        survey,
-      });
-
-      res.send(newSurvey);
-    } catch (error) {
-      next(error);
-    }
+    // @ts-ignore
+    const surveyResponse = await createSurvey(title, survey);
+    res.send(surveyResponse);
   },
 );
 
@@ -71,21 +64,12 @@ router.delete(
   "/:id",
   async (request: Request, response: Response, next: NextFunction) => {
     const { id } = request.params;
-    try {
-      const record = await Survey.findByIdAndDelete(id);
-      if (!record) {
-        response.status(404).json({
-          message: "Record not found.",
-        });
-      }
-
-      response.json({
-        message: "Record deleted successfully.",
-      });
-    } catch (error) {
-      next(error);
-    }
-  },
+    // await the function here
+    await deleteSurvey(id);
+    response.json({
+      message: "Deleted successfully"
+    })
+  }
 );
 
 router.use((err: any, req: Request, res: Response) => {

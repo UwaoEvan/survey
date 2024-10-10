@@ -1,10 +1,12 @@
 "use client";
 import { PlusCircleIcon } from "@heroicons/react/20/solid";
 import { useRouter } from "next/navigation";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, QueryClient } from "@tanstack/react-query";
+
 
 export default function Home() {
   const router = useRouter();
+  const queryClient = new QueryClient();
 
   const fetchSurveys = async () => {
     try {
@@ -30,12 +32,30 @@ export default function Home() {
     queryFn: fetchSurveys,
   });
 
+  const handleDelete = async (id: string) => {
+    try {
+      const response = await fetch(`http://localhost:4000/api/${id}`, { method: "DELETE" });
+      if (!response.ok) {
+        throw new Error("Something went wrong");
+      }
+      const data = await response.json();
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+
   return (
     <div className="w-full mt-20">
       {data?.map((options: any) => (
-        <p className="text-blue-400" key={options._id}>
-          {options?.title}
-        </p>
+        <div className="flex items-center">
+          <p className="text-blue-400 my-4" key={options._id}>
+            {options?.title}
+          </p>
+          <div onClick={(e) => handleDelete(options._id)} className="bg-red-400 w-[80px] text-white p-2 ml-4 text-center rounded-sm hover:cursor-pointer">
+            Delete
+          </div>
+        </div>
       ))}
 
       {!data && (

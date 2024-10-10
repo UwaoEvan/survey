@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 import routes from "../src/routes/survey";
 import cors from "cors";
 
-const url = "mongdb url";
+const url = "mongodb+srv://evan:Mwambisi254@cluster0.gpmge.mongodb.net/";
 
 mongoose.connect(url);
 
